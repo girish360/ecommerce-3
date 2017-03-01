@@ -1,0 +1,57 @@
+﻿@using OZ.DataModel
+@model Product
+@{
+    ViewBag.Title = "Show";
+}
+
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+    <div class="list-group">
+        @Html.Action("Menu", "Category")
+    </div>
+</div>
+@if (Model != null)
+{
+    <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-4 col-sm-4">
+            <img src="~/Content/Image/@(Model.Sku + @".png")" />
+        </div>
+        <div class="col-xs-8 col-sm-8">
+            <h3>@Model.Title</h3>
+            <p>sku: @Model.Sku</p>
+            <p>price: @Model.Price</p>
+
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <p>
+                    Qty:
+                    <select id="quantity" name="quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </p>
+                <div>
+                    @Html.Hidden("productId",Model.ID )
+                    @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-primary" value="Add to Cart" />
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h2>Description</h2>
+                @Model.Description
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-xs-12 col-sm-9">
+        <h1>Product Not Found!</h1>
+    </div>
+}
+
+
+
+

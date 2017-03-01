@@ -1,0 +1,15 @@
+﻿@using OZ.DataModel;
+@model IEnumerable<Category>
+
+@foreach (var link in Model)
+{
+    @Html.RouteLink(link.DetailName,
+    new {
+        controller ="Product",
+        action = "ShowByCategory",
+        category = link.Name,
+        page =1},
+    new { @class="btn btn-block btn-default btn-lg"
+            + (link.Name == ViewBag.SelectedCategory ? " btn-primary":"")}
+    )
+}

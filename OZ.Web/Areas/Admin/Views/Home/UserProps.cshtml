@@ -1,0 +1,29 @@
+﻿@using OZ.DataModel.Identity
+@model AppUser
+@{
+    ViewBag.Title = "UserProps";
+}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2>UserProps</h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Custom User Properties
+        </div>
+        <table class="table table-striped">
+            <tr>
+                <th>City</th>
+                <td>@Model.City</td>
+                <td>@Model.Country</td>
+            </tr>
+        </table>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <label>City</label>
+            @Html.DropDownListFor(x=>x.City,new SelectList(Enum.GetNames(typeof(Cities))))
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    }
+</div>
+

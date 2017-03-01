@@ -1,0 +1,59 @@
+﻿@using OZ.DataModel.Identity
+@model IEnumerable<AppUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Admin Home</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr><td colspan="3">No User Accounts</td> </tr>
+                }
+                else
+                {
+                    foreach (AppUser user in Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>
+                                @using (Html.BeginForm("Delete", "Home", new { id = user.Id }))
+                                {
+                                    @Html.ActionLink("Edit","Edit",new { id=user.Id}, new {@class="btn btn-primary btn-xs" })
+                                    <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row placeholders">
+    @Html.ActionLink("Create","Create",null, new { @class="btn btn-primary"})
+    </div>
+
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Label</h4>
+                <span class="text-muted">Something else</span>
+            </div>
+        </div>
+        <h2 class="sub-header">Section title</h2>
+
+
+    </div>

@@ -1,0 +1,30 @@
+﻿@model OZ.ViewModel.ProductsListViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-xs-12 col-sm-9">
+    <div class="jumbotron">
+        <h1>Product jumbotron</h1>
+        <p>This i in Bootstrap. Try some responsive-range viewport sizes to see it in action.This i in Bootstrap. Try some responsive-range viewport sizes to see it in action</p>
+    </div>
+    <div class="row">
+        @if (Model.Products.Count() > 0)
+        {
+            foreach (OZ.DataModel.Product p in Model.Products)
+            {
+                <div class="col-xs-6 col-lg-4">
+                    @Html.Partial("ProductSummary", p)
+                </div>
+            }
+        }
+    </div>
+    <div>
+        @Html.PageLinks(Model.PagingInfo,x=>Url.Action("Index",new { page=x}))
+    </div>
+</div>
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+    <div class="list-group">
+       @Html.Action("Menu", "Category")
+    </div>
+</div>

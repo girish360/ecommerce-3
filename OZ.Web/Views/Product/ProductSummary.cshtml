@@ -1,0 +1,14 @@
+﻿@model OZ.DataModel.Product
+
+<div class="well" style="height:300px">
+    <p>
+        <a href="/Product/Show/@Model.Sku"><img src="~/Content/Image/@(Model.Sku+@".png")" /></a>
+</p>
+    <p>
+        <h5>
+            <a href="/Product/Show/@Model.Sku"><strong>@Model.Title</strong></a>
+        </h5>
+            <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
+        
+    </p>
+</div>
